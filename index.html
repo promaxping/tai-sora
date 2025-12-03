@@ -1,0 +1,777 @@
+ <link rel="stylesheet" href="/styles.css">
+    
+    <style>
+        .sora-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+        
+        .sora-hero {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .sora-hero h2 {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 0.5rem;
+        }
+        
+        .sora-hero p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .sora-form {
+            background: white;
+            border-radius: 16px;
+            padding: 2rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .input-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .input-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        .input-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+        
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+        
+        .result-box {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 10px;
+            display: none;
+        }
+        
+        .result-box.success {
+            display: block;
+            background: #e8f5e9;
+            border: 1px solid #4caf50;
+        }
+        
+        .result-box.error {
+            display: block;
+            background: #ffebee;
+            border: 1px solid #f44336;
+        }
+        
+        .result-box h4 {
+            margin: 0 0 1rem 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .result-box.success h4 {
+            color: #2e7d32;
+        }
+        
+        .result-box.error h4 {
+            color: #c62828;
+        }
+        
+        .download-link {
+            word-break: break-all;
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            font-size: 14px;
+            color: #333;
+        }
+        
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: #4caf50;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            background: #388e3c;
+            transform: translateY(-2px);
+        }
+        
+        .download-btn.secondary {
+            background: #2196f3;
+        }
+        
+        .download-btn.secondary:hover {
+            background: #1976d2;
+        }
+        
+        .download-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .download-btn:disabled {
+            opacity: 0.7;
+            cursor: wait;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+        
+        .feature-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        
+        .feature-card i {
+            font-size: 2.5rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h4 {
+            margin: 0 0 0.5rem 0;
+            color: #333;
+        }
+        
+        .feature-card p {
+            margin: 0;
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @media (max-width: 768px) {
+            .sora-container {
+                padding: 1rem;
+            }
+            
+            .sora-hero h2 {
+                font-size: 1.8rem;
+            }
+            
+            .sora-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header">
+        <div class="header-container">
+            <div class="logo">
+                <a href="/" aria-label="KLTTS Home">
+                    <h1>KLTTS<span>AI</span></h1>
+                </a>
+            </div>
+            <nav class="main-nav">
+                <div class="language-select">
+                    <select id="languageSelect" aria-label="Select Language">
+                        <option value="en">English</option>
+                        <option value="vi" selected>Tiếng Việt</option>
+                    </select>
+                </div>
+                <button class="mobile-menu-btn" aria-label="Toggle menu">
+                    <span class="hamburger"></span>
+                </button>
+                <ul class="nav-links">
+                    <li><a href="/">Trang chủ</a></li>
+                    <li><a href="/about.html">Giới thiệu</a></li>
+                    <li><a href="/getsora/" class="active">Sora Download</a></li>
+                    <li><a href="/banana/">Banana Pro</a></li>
+                    <li><a href="/contact.html">Liên hệ</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container sora-container">
+        <section class="sora-hero">
+            <h2><i class="fas fa-video"></i> Download Sora 2 Videos - Fast, Free & No Watermark</h2>
+            <p>Tải video Sora chất lượng gốc cao nhất từ OpenAI</p>
+        </section>
+        
+        <div class="notice-box" style="background: #e8f5e9; border: 1px solid #4caf50; border-radius: 10px; padding: 1rem; margin-bottom: 1.5rem;">
+            <p style="margin: 0; color: #2e7d32; font-size: 14px;">
+                <i class="fas fa-check-circle"></i> <strong>Tính năng:</strong> Video tải về KHÔNG có watermark - Chất lượng gốc HD từ Sora OpenAI.
+            </p>
+        </div>
+        
+        <!-- Google AdSense - Auto Ads sẽ tự động hiển thị -->
+        <!-- Để đặt quảng cáo cụ thể, vào AdSense > Ads > By ad unit > Create -->
+        
+        <div class="sora-form">
+            <form id="soraForm">
+                <div class="input-group">
+                    <label for="soraUrl">
+                        <i class="fas fa-link"></i> Link video Sora <span style="font-weight: normal; color: #888;">(tối đa 5 link, mỗi link một dòng)</span>
+                    </label>
+                    <textarea id="soraUrl" 
+                           placeholder="Dán link Sora vào đây (tối đa 5 link):&#10;https://sora.chatgpt.com/p/abc123&#10;https://sora.chatgpt.com/p/xyz456&#10;..." 
+                           rows="4"
+                           style="width: 100%; padding: 14px 16px; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 16px; transition: all 0.3s ease; box-sizing: border-box; resize: vertical; font-family: inherit;"
+                           required></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <i class="fas fa-download"></i>
+                    <span>Lấy link tải xuống</span>
+                </button>
+            </form>
+            
+            <!-- Progress bar cho batch download -->
+            <div id="progressContainer" style="display: none; margin-top: 1rem;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span id="progressText" style="font-size: 14px; color: #666;">Đang xử lý...</span>
+                    <span id="progressCount" style="font-size: 14px; color: #667eea; font-weight: 600;">0/0</span>
+                </div>
+                <div style="background: #e0e0e0; border-radius: 10px; height: 8px; overflow: hidden;">
+                    <div id="progressBar" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); height: 100%; width: 0%; transition: width 0.3s ease;"></div>
+                </div>
+            </div>
+            
+            <div class="result-box" id="resultBox">
+                <h4 id="resultTitle"></h4>
+                <div id="resultContent"></div>
+            </div>
+        </div>
+        
+        <div class="features">
+            <div class="feature-card">
+                <i class="fas fa-bolt"></i>
+                <h4>Nhanh chóng</h4>
+                <p>Trích xuất link trong vài giây</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-check-circle"></i>
+                <h4>Không Watermark</h4>
+                <p>Video gốc HD không logo</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-infinity"></i>
+                <h4>Miễn phí</h4>
+                <p>Sử dụng không giới hạn</p>
+            </div>
+        </div>
+        
+        <!-- SEO Article Section -->
+        <article class="seo-article" style="margin-top: 3rem; background: white; border-radius: 16px; padding: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+            <h2 style="font-size: 1.8rem; color: #333; margin-bottom: 1rem;">Download Sora 2 Videos Without Watermark – Free & Original Quality (2025)</h2>
+            
+            <p style="color: #555; line-height: 1.8; margin-bottom: 1.5rem;">
+                OpenAI's <strong>Sora 2</strong> has revolutionized AI video generation with hyper-realistic visuals. However, the default download option often includes a watermark or logo, which can be distracting for content creators, video editors, and marketers.
+            </p>
+            
+            <p style="color: #555; line-height: 1.8; margin-bottom: 1.5rem;">
+                If you are looking for a way to save Sora 2 videos in their <strong>original quality without any branding</strong>, you are in the right place. <strong>KLTTS Sora Downloader</strong> is the ultimate tool to help you download Sora 2 videos cleanly and freely.
+            </p>
+            
+            <h3 style="font-size: 1.4rem; color: #333; margin: 2rem 0 1rem; border-left: 4px solid #667eea; padding-left: 12px;">Why Use Our Sora 2 Video Downloader?</h3>
+            
+            <p style="color: #555; line-height: 1.8; margin-bottom: 1rem;">
+                Unlike other tools that blur the logo or reduce video quality, our downloader retrieves the <strong>source file directly</strong>.
+            </p>
+            
+            <ul style="color: #555; line-height: 2; margin-bottom: 1.5rem; padding-left: 1.5rem;">
+                <li><strong>✓ No Watermark:</strong> Get the clean, "logo-free" video file perfect for re-editing or sharing on TikTok, Reels, and YouTube Shorts.</li>
+                <li><strong>✓ Original Quality (HD/4K):</strong> We keep the resolution intact. If the generated video is 1080p or 4K, you get exactly that.</li>
+                <li><strong>✓ 100% Free & Fast:</strong> No hidden fees, no account registration required.</li>
+                <li><strong>✓ Cross-Platform:</strong> Works smoothly on iPhone (iOS), Android, Windows, and Mac.</li>
+            </ul>
+            
+            <h3 style="font-size: 1.4rem; color: #333; margin: 2rem 0 1rem; border-left: 4px solid #667eea; padding-left: 12px;">How to Download Sora 2 Videos Without Watermark</h3>
+            
+            <p style="color: #555; line-height: 1.8; margin-bottom: 1rem;">
+                Follow these simple steps to save your favorite AI videos:
+            </p>
+            
+            <ol style="color: #555; line-height: 2; margin-bottom: 1.5rem; padding-left: 1.5rem;">
+                <li><strong>Copy the Link:</strong> Open the Sora app or website and copy the URL of the video you want to download.</li>
+                <li><strong>Paste the URL:</strong> Go to KLTTS Sora Downloader and paste the link into the search box above.</li>
+                <li><strong>Download:</strong> Click the "Lấy link tải xuống" button. Then click "Tải video về máy" to save the video instantly to your device.</li>
+            </ol>
+            
+            <h3 style="font-size: 1.4rem; color: #333; margin: 2rem 0 1rem; border-left: 4px solid #667eea; padding-left: 12px;">Frequently Asked Questions</h3>
+            
+            <div style="background: #f8f9fa; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                <p style="color: #333; font-weight: 600; margin: 0 0 0.5rem;">Is it safe to use this downloader?</p>
+                <p style="color: #555; margin: 0;">Yes, we do not store your downloaded videos or personal data. All processing happens in real-time.</p>
+            </div>
+            
+            <div style="background: #f8f9fa; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                <p style="color: #333; font-weight: 600; margin: 0 0 0.5rem;">Does it support the latest Sora v2 model?</p>
+                <p style="color: #555; margin: 0;">Absolutely. Our system is fully updated to handle the latest Sora 2 architecture and all video formats.</p>
+            </div>
+            
+            <div style="background: #f8f9fa; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                <p style="color: #333; font-weight: 600; margin: 0 0 0.5rem;">Can I use downloaded videos commercially?</p>
+                <p style="color: #555; margin: 0;">Please refer to OpenAI's terms of service regarding commercial use of Sora-generated content.</p>
+            </div>
+        </article>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Về chúng tôi</h3>
+                <p>KLTTS cung cấp các công cụ AI miễn phí, bao gồm chuyển văn bản thành giọng nói và tải video Sora.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Liên kết</h3>
+                <ul>
+                    <li><a href="/about.html">Giới thiệu</a></li>
+                    <li><a href="/terms-of-service.html">Điều khoản dịch vụ</a></li>
+                    <li><a href="/privacy-policy.html">Chính sách bảo mật</a></li>
+                    <li><a href="/changelog.html">Changelog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Liên hệ</h3>
+                <ul class="contact-info">
+                    <li>
+                        <i class="fab fa-telegram"></i> <a href="https://t.me/kengirlvn" target="_blank" rel="noopener noreferrer">Telegram</a>
+                    </li>
+                    <li>
+                        <i class="fab fa-facebook"></i> <a href="https://www.facebook.com/cuit0101" target="_blank" rel="noopener noreferrer">Facebook</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Ủng hộ</h3>
+                <div class="donate-info">
+                    <p><strong>Ngân hàng:</strong> MB Bank - 8136868686868</p>
+                    <p><strong>Crypto:</strong> TY6NPFWmba43MvdqoYZ6vzvgeo2Jx7A9oe</p>
+                    <p><strong>PayPal:</strong> paypal.me/danhcv</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>KLTTS Ver 1.0.12 by <a href="https://www.facebook.com/cuit0101" target="_blank">Danhcv</a></p>
+        </div>
+    </footer>
+
+    <script>
+        // API Key được ẩn phía server - Frontend chỉ gọi proxy
+        const API_URL = '/sora-proxy.php';
+        const TOKEN_URL = '/sora-token.php?action=generate';
+        
+        // CSRF Token - sẽ được lấy khi load trang
+        let csrfToken = '';
+        let tokenExpiry = 0;
+        
+        // Lấy token mới
+        async function refreshToken() {
+            try {
+                const res = await fetch(TOKEN_URL);
+                const data = await res.json();
+                if (data.success) {
+                    csrfToken = data.token;
+                    tokenExpiry = Date.now() + (data.expires_in * 1000) - 10000; // Trừ 10s để an toàn
+                }
+            } catch (e) {
+                console.error('Failed to get token:', e);
+            }
+        }
+        
+        // Kiểm tra và refresh token nếu cần
+        async function ensureValidToken() {
+            if (!csrfToken || Date.now() > tokenExpiry) {
+                await refreshToken();
+            }
+            return csrfToken;
+        }
+        
+        // Lấy token ngay khi load trang
+        refreshToken();
+        
+        // Tạo HTML kết quả cho một video
+        function createSingleResultHTML(videoUrl, videoId, index, extra = {}) {
+            // Escape HTML để tránh XSS
+            const safeVideoUrl = videoUrl.replace(/"/g, '&quot;');
+            const safeVideoId = videoId.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+            const safeTitle = extra.title ? extra.title.replace(/</g, '&lt;').replace(/>/g, '&gt;') : '';
+            const thumbnail = extra.thumbnail || '';
+            const viewCount = extra.viewCount ? extra.viewCount.toLocaleString() : '';
+            const likeCount = extra.likeCount ? extra.likeCount.toLocaleString() : '';
+            
+            let infoHTML = '';
+            if (safeTitle || viewCount || likeCount) {
+                infoHTML = `<div style="margin-bottom: 0.5rem; font-size: 13px; color: #444;">`;
+                if (safeTitle) infoHTML += `<strong>${safeTitle}</strong><br>`;
+                if (viewCount || likeCount) {
+                    infoHTML += `<span style="color: #888;">`;
+                    if (viewCount) infoHTML += `<i class="fas fa-eye"></i> ${viewCount} `;
+                    if (likeCount) infoHTML += `<i class="fas fa-heart"></i> ${likeCount}`;
+                    infoHTML += `</span>`;
+                }
+                infoHTML += `</div>`;
+            }
+            
+            let thumbnailHTML = '';
+            if (thumbnail) {
+                // Dùng proxy để bypass hotlink protection
+                const proxyThumb = `/image-proxy.php?url=${encodeURIComponent(thumbnail)}`;
+                thumbnailHTML = `<img src="${proxyThumb}" alt="thumbnail" style="width: 100%; max-width: 200px; border-radius: 8px; margin-bottom: 0.5rem;" loading="lazy" onerror="this.style.display='none'">`;
+            }
+            
+            return `
+                <div class="video-item" style="background: #f8f9fa; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+                        <span style="background: #667eea; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px;">#${index}</span>
+                        <span style="font-size: 13px; color: #666; word-break: break-all;">${safeVideoId}</span>
+                    </div>
+                    ${thumbnailHTML}
+                    ${infoHTML}
+                    <div class="download-buttons">
+                        <button onclick="downloadVideo('${safeVideoUrl}', '${safeVideoId}')" class="download-btn" style="padding: 8px 16px; font-size: 14px;">
+                            <i class="fas fa-download"></i> Tải về
+                        </button>
+                        <a href="${safeVideoUrl}" target="_blank" rel="noopener" class="download-btn secondary" style="padding: 8px 16px; font-size: 14px;">
+                            <i class="fas fa-play-circle"></i> Xem
+                        </a>
+                    </div>
+                </div>
+            `;
+        }
+        
+        // Tạo HTML cho kết quả lỗi
+        function createErrorResultHTML(url, error, index) {
+            return `
+                <div class="video-item" style="background: #ffebee; border-radius: 8px; padding: 1rem; margin-bottom: 1rem;">
+                    <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem;">
+                        <span style="background: #f44336; color: white; padding: 2px 8px; border-radius: 4px; font-size: 12px;">#${index}</span>
+                        <span style="font-size: 13px; color: #c62828;"><i class="fas fa-times-circle"></i> Lỗi</span>
+                    </div>
+                    <p style="margin: 0; font-size: 13px; color: #666; word-break: break-all;">${url}</p>
+                    <p style="margin: 0.5rem 0 0 0; font-size: 13px; color: #c62828;">${error}</p>
+                </div>
+            `;
+        }
+        
+        // Tạo HTML donate box
+        function createDonateHTML() {
+            return `
+                <div style="background: #fff8e1; border: 1px solid #ffca28; border-radius: 8px; padding: 1rem; text-align: center; margin-top: 1rem;">
+                    <p style="margin: 0 0 0.5rem 0; font-weight: 600; color: #f57c00;">
+                        ☕ Would you like to buy me a cup of coffee?
+                    </p>
+                    <p style="margin: 0 0 1rem 0; font-size: 13px; color: #666;">
+                        The funds will be used to keep the server running for free.
+                    </p>
+                    <p style="margin: 0; font-size: 14px; color: #333;">
+                        <strong>MB Bank:</strong> 8136868686868<br>
+                        <strong>Crypto:</strong> <span style="font-size: 12px; word-break: break-all;">TY6NPFWmba43MvdqoYZ6vzvgeo2Jx7A9oe</span>
+                    </p>
+                </div>
+            `;
+        }
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Page ready
+        });
+        
+        // Hàm download video qua proxy server
+        function downloadVideo(url, filename) {
+            try {
+                const btn = event.target.closest('button');
+                if (!btn) return;
+                
+                const originalText = btn.innerHTML;
+                
+                btn.style.pointerEvents = 'none';
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Đang tải...';
+                
+                // Tạo link download qua proxy
+                const downloadUrl = `/video-download.php?url=${encodeURIComponent(url)}&filename=${encodeURIComponent(filename)}`;
+                
+                // Mở trong tab mới để download (hoạt động tốt hơn trên mobile)
+                const newWindow = window.open(downloadUrl, '_blank');
+                
+                // Fallback nếu popup bị chặn
+                if (!newWindow || newWindow.closed) {
+                    window.location.href = downloadUrl;
+                }
+                
+                setTimeout(() => {
+                    btn.innerHTML = originalText;
+                    btn.style.pointerEvents = 'auto';
+                }, 3000);
+            } catch (err) {
+                console.error('Download error:', err);
+                alert('Không thể tải video. Vui lòng thử nút "Xem" và tải thủ công.');
+            }
+        }
+        
+        // Hàm xử lý một URL với retry
+        async function processUrl(url, retries = 2) {
+            // Đảm bảo có token hợp lệ
+            const token = await ensureValidToken();
+            
+            for (let attempt = 0; attempt <= retries; attempt++) {
+                try {
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), 45000); // 45s timeout
+                    
+                    // Thêm token vào URL
+                    const response = await fetch(`${API_URL}?url=${encodeURIComponent(url)}&_token=${encodeURIComponent(token)}`, {
+                        method: 'GET',
+                        signal: controller.signal,
+                        headers: {
+                            'Accept': 'application/json'
+                        }
+                    });
+                    
+                    clearTimeout(timeoutId);
+                    
+                    if (!response.ok) {
+                        const errorData = await response.json().catch(() => ({}));
+                        throw new Error(errorData.error || `HTTP ${response.status}`);
+                    }
+                    
+                    const data = await response.json();
+                    
+                    if (data.success && data.data && data.data.download_url) {
+                        return {
+                            success: true,
+                            videoUrl: data.data.download_url,
+                            videoId: data.data.video_id || 'sora_video',
+                            thumbnail: data.data.thumbnail,
+                            title: data.data.title,
+                            viewCount: data.data.view_count,
+                            likeCount: data.data.like_count
+                        };
+                    } else if (data.success && data.download_link) {
+                        return {
+                            success: true,
+                            videoUrl: data.download_link,
+                            videoId: 'sora_video',
+                            thumbnail: data.thumbnail,
+                            title: data.title
+                        };
+                    } else {
+                        throw new Error(data.error || 'Không nhận được link tải');
+                    }
+                } catch (error) {
+                    // Nếu lỗi token hết hạn, refresh và retry
+                    if (error.message.includes('Phiên làm việc hết hạn') || error.message.includes('hết hạn')) {
+                        await refreshToken();
+                        if (attempt < retries) {
+                            continue;
+                        }
+                    }
+                    
+                    // Nếu là lỗi timeout hoặc network và còn retry
+                    if (attempt < retries && (error.name === 'AbortError' || error.message.includes('fetch'))) {
+                        console.log(`Retry ${attempt + 1}/${retries} for ${url}`);
+                        await new Promise(resolve => setTimeout(resolve, 2000));
+                        continue;
+                    }
+                    
+                    // Xử lý message lỗi thân thiện
+                    let errorMsg = error.message || 'Có lỗi xảy ra';
+                    if (error.name === 'AbortError') {
+                        errorMsg = 'Hết thời gian chờ. Server có thể đang bận.';
+                    } else if (errorMsg.includes('Failed to fetch') || errorMsg.includes('NetworkError')) {
+                        errorMsg = 'Lỗi kết nối mạng. Vui lòng kiểm tra internet.';
+                    }
+                    
+                    throw new Error(errorMsg);
+                }
+            }
+        }
+        
+        const form = document.getElementById('soraForm');
+        const urlInput = document.getElementById('soraUrl');
+        const submitBtn = document.getElementById('submitBtn');
+        const resultBox = document.getElementById('resultBox');
+        const resultTitle = document.getElementById('resultTitle');
+        const resultContent = document.getElementById('resultContent');
+        const progressContainer = document.getElementById('progressContainer');
+        const progressBar = document.getElementById('progressBar');
+        const progressText = document.getElementById('progressText');
+        const progressCount = document.getElementById('progressCount');
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            // Parse URLs (mỗi dòng một URL)
+            const rawInput = urlInput.value.trim();
+            let urls = rawInput.split('\n')
+                .map(url => url.trim())
+                .filter(url => url.match(/sora\.chatgpt\.com\/p\/[a-zA-Z0-9_]+/));
+            
+            if (urls.length === 0) {
+                alert('Vui lòng nhập ít nhất một link Sora hợp lệ!');
+                return;
+            }
+            
+            // Giới hạn tối đa 5 link
+            if (urls.length > 5) {
+                alert('Chỉ được nhập tối đa 5 link mỗi lần!');
+                urls = urls.slice(0, 5);
+            }
+            
+            // Reset UI
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<div class="spinner"></div><span>Đang xử lý...</span>';
+            resultBox.className = 'result-box';
+            resultBox.style.display = 'none';
+            resultContent.innerHTML = '';
+            
+            // Show progress bar
+            progressContainer.style.display = 'block';
+            progressBar.style.width = '0%';
+            progressCount.textContent = `0/${urls.length}`;
+            
+            let successCount = 0;
+            let resultsHTML = '';
+            
+            // Xử lý từng URL
+            for (let i = 0; i < urls.length; i++) {
+                const url = urls[i];
+                progressText.textContent = `Đang xử lý video ${i + 1}/${urls.length}...`;
+                progressCount.textContent = `${i}/${urls.length}`;
+                progressBar.style.width = `${(i / urls.length) * 100}%`;
+                
+                try {
+                    const result = await processUrl(url);
+                    resultsHTML += createSingleResultHTML(result.videoUrl, result.videoId, i + 1, {
+                        thumbnail: result.thumbnail,
+                        title: result.title,
+                        viewCount: result.viewCount,
+                        likeCount: result.likeCount
+                    });
+                    successCount++;
+                } catch (error) {
+                    resultsHTML += createErrorResultHTML(url, error.message, i + 1);
+                }
+                
+                // Delay nhẹ giữa các request để tránh rate limit
+                if (i < urls.length - 1) {
+                    await new Promise(resolve => setTimeout(resolve, 500));
+                }
+            }
+            
+            // Complete
+            progressBar.style.width = '100%';
+            progressCount.textContent = `${urls.length}/${urls.length}`;
+            progressText.textContent = `Hoàn thành! ${successCount}/${urls.length} video thành công`;
+            
+            // Show results
+            if (successCount > 0) {
+                resultBox.className = 'result-box success';
+                resultTitle.innerHTML = `<i class="fas fa-check-circle"></i> Thành công ${successCount}/${urls.length} video`;
+                
+                resultContent.innerHTML = resultsHTML + createDonateHTML();
+            } else {
+                resultBox.className = 'result-box error';
+                resultTitle.innerHTML = '<i class="fas fa-exclamation-circle"></i> Không thể xử lý video nào';
+                resultContent.innerHTML = resultsHTML;
+            }
+            
+            resultBox.style.display = 'block';
+            
+            // Reset button
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-download"></i><span>Lấy link tải xuống</span>';
+            
+            // Ẩn progress bar sau 2 giây
+            setTimeout(() => {
+                progressContainer.style.display = 'none';
+            }, 2000);
+        });
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        if (mobileMenuBtn) {
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+                mobileMenuBtn.classList.toggle('active');
+            });
+        }
+    </script>
