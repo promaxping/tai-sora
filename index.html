@@ -1,382 +1,556 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Download Sora 2 Videos - Fast, Free &amp; No Watermark</title>
-  <meta name="description" content="Tải video Sora 2 chất lượng gốc, không watermark, miễn phí và siêu nhanh." />
+    <meta charset="UTF-8" />
+    <title>Download Sora 2 Videos - Fast, Free & No Watermark</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-  <!-- Font Awesome icons -->
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" />
 
-  <style>
-    :root {
-      --primary: #667eea;
-      --primary-dark: #764ba2;
-      --bg: #f5f7ff;
-      --text: #111827;
-    }
+    <!-- CSS gốc của site (nếu có trên server của bạn) -->
+    <link rel="stylesheet" href="/src/styles.css?v=1.0.122222" />
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    <style>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f5f7fb;
+            margin: 0;
+        }
 
-    body {
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-        sans-serif;
-      background: var(--bg);
-      color: var(--text);
-    }
+        .sora-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
 
-    .page-wrapper {
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      padding: 2rem 1rem;
-    }
+        .sora-hero {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-    .sora-container {
-      width: 100%;
-      max-width: 900px;
-      background: #ffffff;
-      border-radius: 18px;
-      padding: 2.5rem 2rem 2.5rem;
-      box-shadow: 0 18px 50px rgba(15, 23, 42, 0.12);
-    }
+        .sora-hero h2 {
+            font-size: 2.3rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            margin-bottom: 0.5rem;
+        }
 
-    /* HERO */
-    .sora-hero {
-      text-align: center;
-      margin-bottom: 1.75rem;
-    }
+        .sora-hero h2 i {
+            margin-right: 0.5rem;
+        }
 
-    .sora-hero-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      border-radius: 999px;
-      background: rgba(102, 126, 234, 0.15);
-      margin-bottom: 0.75rem;
-    }
+        .sora-hero p {
+            margin: 0;
+            color: #555;
+        }
 
-    .sora-hero-icon i {
-      color: var(--primary);
-    }
+        .notice-box {
+            background: #f1f5ff;
+            border-radius: 12px;
+            padding: 1rem 1.25rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid rgba(102, 126, 234, 0.15);
+        }
 
-    .sora-hero h1 {
-      font-size: 1.9rem;
-      line-height: 1.25;
-      margin-bottom: 0.4rem;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
+        .notice-box p {
+            margin: 0;
+            color: #2e7d32;
+            font-size: 0.95rem;
+        }
 
-    .sora-hero p {
-      color: #6b7280;
-      font-size: 0.98rem;
-    }
+        .notice-box i {
+            color: #2e7d32;
+            margin-right: 0.5rem;
+        }
 
-    /* NOTICE */
-    .notice-box {
-      display: flex;
-      align-items: flex-start;
-      gap: 0.6rem;
-      background: #e8f5e9;
-      border: 1px solid #4caf50;
-      border-radius: 12px;
-      padding: 0.85rem 1rem;
-      margin-bottom: 1.5rem;
-      font-size: 0.9rem;
-      color: #2e7d32;
-    }
+        .notice-box strong {
+            margin-right: 4px;
+        }
 
-    .notice-box i {
-      margin-top: 3px;
-    }
+        .sora-form {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 1.75rem;
+            box-shadow: 0 12px 35px rgba(15, 23, 42, 0.08);
+            margin-bottom: 1.5rem;
+        }
 
-    .notice-box strong {
-      font-weight: 600;
-    }
+        .input-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #333;
+            font-size: 0.98rem;
+        }
 
-    /* FORM */
-    .sora-form {
-      background: #f9fafb;
-      border-radius: 16px;
-      padding: 1.75rem 1.5rem;
-      margin-bottom: 2.25rem;
-    }
+        .input-group label i {
+            margin-right: 6px;
+            color: #667eea;
+        }
 
-    .input-group {
-      margin-bottom: 1.25rem;
-    }
+        .input-group label span {
+            font-weight: normal;
+            color: #888;
+            margin-left: 4px;
+        }
 
-    .input-label {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      margin-bottom: 0.45rem;
-      font-weight: 600;
-      font-size: 0.95rem;
-      color: #111827;
-    }
+        .input-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-sizing: border-box;
+            resize: vertical;
+            font-family: inherit;
+        }
 
-    .input-label span.tip {
-      font-weight: 400;
-      color: #9ca3af;
-      margin-left: auto;
-      font-size: 0.85rem;
-    }
+        .input-group textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.15);
+        }
 
-    .input-label i {
-      color: var(--primary);
-    }
+        .submit-btn {
+            margin-top: 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.6rem;
+            border-radius: 999px;
+            cursor: pointer;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.98rem;
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.35);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+        }
 
-    textarea {
-      width: 100%;
-      padding: 12px 14px;
-      border-radius: 10px;
-      border: 1.8px solid #e5e7eb;
-      font-size: 0.96rem;
-      resize: vertical;
-      min-height: 110px;
-      max-height: 260px;
-      outline: none;
-      transition: all 0.2s ease;
-      font-family: inherit;
-    }
+        .submit-btn i {
+            font-size: 1rem;
+        }
 
-    textarea::placeholder {
-      color: #9ca3af;
-      white-space: pre-line;
-    }
+        .submit-btn:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow: 0 14px 30px rgba(102, 126, 234, 0.45);
+        }
 
-    textarea:focus {
-      border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
-      background: #ffffff;
-    }
+        .submit-btn:disabled {
+            opacity: 0.7;
+            cursor: wait;
+        }
 
-    .submit-btn {
-      width: 100%;
-      border: none;
-      border-radius: 999px;
-      padding: 0.85rem 1.4rem;
-      margin-top: 0.35rem;
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      color: #ffffff;
-      font-weight: 600;
-      font-size: 1rem;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.5rem;
-      box-shadow: 0 15px 30px rgba(79, 70, 229, 0.35);
-      transition: transform 0.12s ease, box-shadow 0.12s ease, opacity 0.15s ease;
-    }
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top-color: #ffffff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
 
-    .submit-btn i {
-      font-size: 1.05rem;
-    }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
 
-    .submit-btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 18px 35px rgba(79, 70, 229, 0.45);
-    }
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
 
-    .submit-btn:active {
-      transform: translateY(0px) scale(0.99);
-      box-shadow: 0 10px 25px rgba(79, 70, 229, 0.3);
-      opacity: 0.9;
-    }
+        .feature-card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 1rem 1.1rem;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.35rem;
+        }
 
-    /* FEATURES */
-    .features {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 1rem;
-    }
+        .feature-card i {
+            font-size: 2.1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            margin-bottom: 0.25rem;
+        }
 
-    .feature-card {
-      background: #f9fafb;
-      border-radius: 14px;
-      padding: 1.2rem 1rem;
-      text-align: center;
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.03);
-    }
+        .feature-card h4 {
+            margin: 0;
+            color: #333;
+            font-size: 1.02rem;
+        }
 
-    .feature-icon {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      width: 38px;
-      height: 38px;
-      border-radius: 999px;
-      background: rgba(102, 126, 234, 0.15);
-      margin-bottom: 0.6rem;
-    }
+        .feature-card p {
+            margin: 0;
+            color: #666;
+            font-size: 0.9rem;
+        }
 
-    .feature-icon i {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      font-size: 1.1rem;
-    }
+        .result-box {
+            margin-top: 1.5rem;
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 1rem 1.25rem;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+        }
 
-    .feature-card h3 {
-      font-size: 0.98rem;
-      margin-bottom: 0.2rem;
-      color: #111827;
-    }
+        .result-box h4 {
+            margin: 0 0 0.75rem 0;
+            font-size: 1rem;
+            color: #333;
+        }
 
-    .feature-card p {
-      font-size: 0.85rem;
-      color: #6b7280;
-    }
+        @media (max-width: 768px) {
+            .sora-container {
+                padding: 1.5rem 1rem;
+            }
 
-    /* RESPONSIVE */
-    @media (max-width: 768px) {
-      .page-wrapper {
-        padding: 1.5rem 0.9rem;
-      }
+            .sora-hero h2 {
+                font-size: 1.8rem;
+            }
 
-      .sora-container {
-        padding: 1.8rem 1.4rem 2rem;
-        border-radius: 0;
-        box-shadow: none;
-      }
-
-      .sora-hero h1 {
-        font-size: 1.5rem;
-      }
-
-      .features {
-        grid-template-columns: 1fr;
-        gap: 0.9rem;
-      }
-
-      .sora-form {
-        padding: 1.35rem 1.1rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      textarea {
-        font-size: 0.9rem;
-      }
-
-      .submit-btn {
-        font-size: 0.95rem;
-      }
-    }
-  </style>
+            .sora-form {
+                padding: 1.5rem;
+            }
+        }
+    </style>
 </head>
-
 <body>
-  <div class="page-wrapper">
     <main class="sora-container">
-      <!-- HERO -->
-      <header class="sora-hero">
-        <div class="sora-hero-icon">
-          <i class="fas fa-video"></i>
+        <section class="sora-hero">
+            <h2>
+                <i class="fas fa-video"></i>
+                Download Sora 2 Videos - Fast, Free &amp; No Watermark
+            </h2>
+            <p>Tải video Sora chất lượng gốc cao nhất từ OpenAI</p>
+        </section>
+
+        <div class="notice-box">
+            <p>
+                <i class="fas fa-check-circle"></i>
+                <strong>Tính năng:</strong>
+                Video tải về KHÔNG có watermark - Chất lượng gốc HD từ Sora OpenAI.
+            </p>
         </div>
-        <h1>Download Sora 2 Videos – Fast, Free &amp; No Watermark</h1>
-        <p>Tải video Sora chất lượng gốc cao nhất từ OpenAI, không dính watermark.</p>
-      </header>
 
-      <!-- NOTICE -->
-      <div class="notice-box">
-        <i class="fas fa-check-circle"></i>
-        <div>
-          <strong>Tính năng:</strong>
-          Video tải về <strong>KHÔNG có watermark</strong>, giữ nguyên chất lượng gốc HD từ Sora OpenAI.
-        </div>
-      </div>
-
-      <!-- FORM -->
-      <section class="sora-form">
-        <form id="soraForm">
-          <div class="input-group">
-            <label class="input-label" for="soraUrl">
-              <i class="fas fa-link"></i>
-              Link video Sora
-              <span class="tip">Tối đa 5 link, mỗi link một dòng</span>
-            </label>
-
-            <textarea
-              id="soraUrl"
-              name="soraUrl"
-              placeholder="Dán link Sora vào đây, ví dụ:
+        <div class="sora-form">
+            <form id="soraForm">
+                <div class="input-group">
+                    <label for="soraUrl">
+                        <i class="fas fa-link"></i>
+                        Link video Sora
+                        <span>(tối đa 5 link, mỗi link một dòng)</span>
+                    </label>
+                    <textarea
+                        id="soraUrl"
+                        rows="4"
+                        placeholder="Dán link Sora vào đây (tối đa 5 link):
 https://sora.chatgpt.com/p/abc123
-https://sora.chatgpt.com/p/xyz456"
-              required
-            ></textarea>
-          </div>
+https://sora.chatgpt.com/p/xyz456
+..."
+                        required
+                    ></textarea>
+                </div>
 
-          <button type="submit" class="submit-btn" id="submitBtn">
-            <i class="fas fa-download"></i>
-            <span>Lấy link tải xuống</span>
-          </button>
-        </form>
-      </section>
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    <i class="fas fa-download"></i>
+                    <span>Lấy link tải xuống</span>
+                </button>
+            </form>
 
-      <!-- FEATURES -->
-      <section class="features" aria-label="Ưu điểm chính">
-        <article class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-bolt"></i>
-          </div>
-          <h3>Nhanh chóng</h3>
-          <p>Trích xuất link tải chỉ trong vài giây, không cần chờ đợi lâu.</p>
-        </article>
+            <!-- Progress bar cho batch download -->
+            <div id="progressContainer" style="display:none; margin-top:1rem;">
+                <div style="display:flex; justify-content:space-between; margin-bottom:0.5rem;">
+                    <span id="progressText" style="font-size:14px; color:#666;">Đang xử lý...</span>
+                    <span id="progressCount" style="font-size:14px; color:#667eea; font-weight:600;">0/0</span>
+                </div>
+                <div style="background:#e0e0e0; border-radius:10px; height:8px; overflow:hidden;">
+                    <div id="progressBar"
+                         style="background:linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+                                height:100%; width:0%; transition:width 0.3s ease;">
+                    </div>
+                </div>
+            </div>
 
-        <article class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-check-circle"></i>
-          </div>
-          <h3>Không watermark</h3>
-          <p>Video giữ nguyên chất lượng gốc HD, sạch logo, sạch chữ.</p>
-        </article>
+            <!-- Kết quả -->
+            <div class="result-box" id="resultBox" style="display:none;">
+                <h4 id="resultTitle"></h4>
+                <div id="resultContent"></div>
+            </div>
+        </div>
 
-        <article class="feature-card">
-          <div class="feature-icon">
-            <i class="fas fa-gift"></i>
-          </div>
-          <h3>Hoàn toàn miễn phí</h3>
-          <p>Không cần đăng ký tài khoản, không giới hạn số lần tải.</p>
-        </article>
-      </section>
+        <div class="features">
+            <div class="feature-card">
+                <i class="fas fa-bolt"></i>
+                <h4>Nhanh chóng</h4>
+                <p>Trích xuất link trong vài giây</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-check-circle"></i>
+                <h4>Không Watermark</h4>
+                <p>Video gốc HD không logo</p>
+            </div>
+            <div class="feature-card">
+                <i class="fas fa-gift"></i>
+                <h4>Miễn phí</h4>
+                <p>Không cần đăng ký tài khoản</p>
+            </div>
+        </div>
     </main>
-  </div>
 
-  <!-- JS demo nhỏ: chặn submit thật, chỉ báo cho bạn biết -->
-  <script>
-    document.getElementById("soraForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const textarea = document.getElementById("soraUrl");
-      const value = textarea.value.trim();
+    <script>
+        // Endpoint backend của bạn
+        const API_URL = '/sora-proxy.php';
+        const TOKEN_URL = '/sora-token.php?action=generate';
 
-      if (!value) {
-        alert("Vui lòng dán ít nhất 1 link Sora vào ô bên trên.");
-        textarea.focus();
-        return;
-      }
+        let csrfToken = '';
+        let tokenExpiry = 0;
 
-      alert("Form đang là demo giao diện.\nBạn có thể gắn API xử lý tải video ở đây.");
-    });
-  </script>
+        async function refreshToken() {
+            try {
+                const res = await fetch(TOKEN_URL);
+                const data = await res.json();
+                if (data.success && data.token) {
+                    csrfToken = data.token;
+                    tokenExpiry = Date.now() + (data.expires_in || 600) * 1000;
+                } else {
+                    console.error('Không lấy được token', data);
+                }
+            } catch (err) {
+                console.error('Lỗi lấy token:', err);
+            }
+        }
+
+        async function ensureValidToken() {
+            if (!csrfToken || Date.now() > tokenExpiry) {
+                await refreshToken();
+            }
+        }
+
+        function setLoading(isLoading) {
+            const btn = document.getElementById('submitBtn');
+            if (!btn) return;
+
+            if (isLoading) {
+                btn.disabled = true;
+                btn.innerHTML = '<span class="spinner"></span><span> Đang xử lý...</span>';
+            } else {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-download"></i><span>Lấy link tải xuống</span>';
+            }
+        }
+
+        function updateProgress(done, total) {
+            const container = document.getElementById('progressContainer');
+            const bar = document.getElementById('progressBar');
+            const text = document.getElementById('progressText');
+            const count = document.getElementById('progressCount');
+
+            if (!container) return;
+
+            if (total > 1) {
+                container.style.display = 'block';
+            } else {
+                container.style.display = 'none';
+            }
+
+            if (bar) {
+                const percent = total ? (done / total) * 100 : 0;
+                bar.style.width = percent + '%';
+            }
+
+            if (text) {
+                text.textContent = (done < total) ? 'Đang xử lý...' : 'Hoàn tất';
+            }
+
+            if (count) {
+                count.textContent = done + '/' + total;
+            }
+        }
+
+        function createSuccessItem(url, info) {
+            const safeUrl = (info.videoUrl || url).replace(/"/g, '&quot;');
+            const safeTitle = (info.title || '')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;');
+
+            return `
+                <div class="video-item"
+                     style="background:#f5f7ff;border-radius:8px;padding:1rem;margin-bottom:0.75rem;">
+                    <p style="margin:0 0 0.5rem 0;font-size:13px;color:#555;word-break:break-all;">
+                        ${url}
+                    </p>
+                    ${safeTitle
+                        ? `<p style="margin:0 0 0.5rem 0;font-size:13px;font-weight:600;color:#333;">
+                               ${safeTitle}
+                           </p>`
+                        : ''
+                    }
+                    <a href="${safeUrl}"
+                       target="_blank"
+                       rel="noopener"
+                       class="download-btn"
+                       style="display:inline-flex;align-items:center;gap:6px;
+                              padding:8px 16px;border-radius:999px;
+                              background:linear-gradient(135deg,#667eea 0%,#764ba2 100%);
+                              color:#fff;font-size:14px;text-decoration:none;">
+                        <i class="fas fa-download"></i> Tải video về máy
+                    </a>
+                </div>
+            `;
+        }
+
+        function createErrorItem(url, msg) {
+            return `
+                <div class="video-item"
+                     style="background:#ffebee;border-radius:8px;padding:1rem;margin-bottom:0.75rem;">
+                    <p style="margin:0 0 0.5rem 0;font-size:13px;color:#666;word-break:break-all;">
+                        ${url}
+                    </p>
+                    <p style="margin:0;font-size:13px;color:#c62828;">
+                        ${msg}
+                    </p>
+                </div>
+            `;
+        }
+
+        async function fetchDownload(url) {
+            await ensureValidToken();
+
+            const controller = new AbortController();
+            const timeoutId = setTimeout(() => controller.abort(), 60000);
+
+            try {
+                const res = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-Token': csrfToken
+                    },
+                    body: JSON.stringify({ url }),
+                    signal: controller.signal
+                });
+
+                clearTimeout(timeoutId);
+
+                const data = await res.json().catch(() => ({}));
+
+                if (!res.ok || !data.success) {
+                    throw new Error(data.error || 'Không nhận được link tải');
+                }
+
+                const d = data.data || data;
+
+                return {
+                    videoUrl: d.download_url || d.download_link,
+                    title: d.title || '',
+                    thumbnail: d.thumbnail
+                };
+            } catch (err) {
+                clearTimeout(timeoutId);
+                throw err;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            refreshToken();
+
+            const form = document.getElementById('soraForm');
+            const urlInput = document.getElementById('soraUrl');
+            const resultBox = document.getElementById('resultBox');
+            const resultTitle = document.getElementById('resultTitle');
+            const resultContent = document.getElementById('resultContent');
+
+            if (!form) return;
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+
+                const rawInput = (urlInput.value || '').trim();
+                let urls = rawInput
+                    .split('\n')
+                    .map(u => u.trim())
+                    .filter(Boolean);
+
+                // chỉ giữ link Sora hợp lệ
+                urls = urls.filter(u =>
+                    u.match(/sora\.chatgpt\.com\/p\/[a-zA-Z0-9_]+/)
+                );
+
+                if (urls.length === 0) {
+                    alert('Vui lòng nhập ít nhất một link Sora hợp lệ!');
+                    return;
+                }
+
+                if (urls.length > 5) {
+                    urls = urls.slice(0, 5);
+                    alert('Chỉ xử lý tối đa 5 link, các link dư sẽ bị bỏ qua.');
+                }
+
+                if (resultBox) {
+                    resultBox.style.display = 'block';
+                    if (resultTitle) resultTitle.textContent = 'Kết quả tải xuống';
+                    if (resultContent) resultContent.innerHTML = '';
+                }
+
+                setLoading(true);
+                updateProgress(0, urls.length);
+
+                let done = 0;
+
+                for (const url of urls) {
+                    try {
+                        const info = await fetchDownload(url);
+
+                        if (info && info.videoUrl) {
+                            if (resultContent) {
+                                resultContent.insertAdjacentHTML(
+                                    'beforeend',
+                                    createSuccessItem(url, info)
+                                );
+                            }
+                        } else {
+                            if (resultContent) {
+                                resultContent.insertAdjacentHTML(
+                                    'beforeend',
+                                    createErrorItem(url, 'Không nhận được link tải')
+                                );
+                            }
+                        }
+                    } catch (err) {
+                        if (resultContent) {
+                            resultContent.insertAdjacentHTML(
+                                'beforeend',
+                                createErrorItem(
+                                    url,
+                                    err.message || 'Có lỗi xảy ra khi xử lý link này'
+                                )
+                            );
+                        }
+                    }
+   
+                    done++;
+                    updateProgress(done, urls.length);
+                }
+
+                setLoading(false);
+            });
+        });
+    </script>
 </body>
 </html>
